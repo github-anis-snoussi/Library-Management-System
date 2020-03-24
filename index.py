@@ -14,6 +14,12 @@ class MainApp(QMainWindow , ui):
         self.setupUi(self)
         self.Handle_UI_Changes()
         self.Handle_Buttons()
+        self.Show_Catagory()
+        self.Show_Publisher()
+        self.Show_Author()
+        self.tableWidget_4.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_3.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_2.horizontalHeader().setStretchLastSection(True)
 
     def Handle_UI_Changes(self):
         self.Hide_Themes()
@@ -103,6 +109,23 @@ class MainApp(QMainWindow , ui):
 
         self.db.commit()
         self.statusBar().showMessage('New Catagory Added')
+        self.lineEdit_19.setText('')
+        self.Show_Catagory()
+
+    def Show_Catagory(self):
+        self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
+        self.cur = self.db.cursor()
+        self.cur.execute(''' SELECT catagory_name FROM catagory ''')
+        data = self.cur.fetchall()
+        if data :
+            self.tableWidget_2.setRowCount(0)
+            rows = 0
+            for row , form in enumerate(data):
+                self.tableWidget_2.insertRow(rows)
+                for column , item in enumerate(form):
+                    self.tableWidget_2.setItem(row , column , QTableWidgetItem(str(item)))
+                    column += 1
+                rows = self.tableWidget_2.rowCount()
 
     def Add_Author(self):
         self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
@@ -113,6 +136,23 @@ class MainApp(QMainWindow , ui):
 
         self.db.commit()
         self.statusBar().showMessage('New Author Added')
+        self.lineEdit_20.setText('')
+        self.Show_Author()
+
+    def Show_Author(self):
+        self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
+        self.cur = self.db.cursor()
+        self.cur.execute(''' SELECT author_name FROM authors ''')
+        data = self.cur.fetchall()
+        if data :
+            self.tableWidget_3.setRowCount(0)
+            rows = 0
+            for row , form in enumerate(data):
+                self.tableWidget_3.insertRow(rows)
+                for column , item in enumerate(form):
+                    self.tableWidget_3.setItem(row , column , QTableWidgetItem(str(item)))
+                    column += 1
+                rows = self.tableWidget_3.rowCount()
 
     def Add_Publisher(self):
         self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
@@ -123,12 +163,30 @@ class MainApp(QMainWindow , ui):
 
         self.db.commit()
         self.statusBar().showMessage('New Publisher Added')
+        self.lineEdit_21.setText('')
+        self.Show_Publisher()
+
+    def Show_Publisher(self):
+        self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
+        self.cur = self.db.cursor()
+        self.cur.execute(''' SELECT publisher_name FROM publisher ''')
+        data = self.cur.fetchall()
+        if data :
+            self.tableWidget_4.setRowCount(0)
+            rows = 0
+            for row , form in enumerate(data):
+                self.tableWidget_4.insertRow(rows)
+                for column , item in enumerate(form):
+                    self.tableWidget_4.setItem(row , column , QTableWidgetItem(str(item)))
+                    column += 1
+                rows = self.tableWidget_4.rowCount()
 
 
 def main():
     app = QApplication(sys.argv)
     window = MainApp()
     window.show()
+    window.setFixedSize(window.size())
     app.exec_()
 
 if __name__ == '__main__':
