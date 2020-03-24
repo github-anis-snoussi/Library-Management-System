@@ -20,6 +20,9 @@ class MainApp(QMainWindow , ui):
         self.tableWidget_4.horizontalHeader().setStretchLastSection(True)
         self.tableWidget_3.horizontalHeader().setStretchLastSection(True)
         self.tableWidget_2.horizontalHeader().setStretchLastSection(True)
+        self.Show_Ctagory_ComboBox()
+        self.Show_Author_ComboBox()
+        self.Show_Publisher_ComboBox()
 
     def Handle_UI_Changes(self):
         self.Hide_Themes()
@@ -180,6 +183,39 @@ class MainApp(QMainWindow , ui):
                     self.tableWidget_4.setItem(row , column , QTableWidgetItem(str(item)))
                     column += 1
                 rows = self.tableWidget_4.rowCount()
+
+    #################################################
+    ############# Add Data to ComboBoxes ############
+
+    def Show_Ctagory_ComboBox(self):
+        self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
+        self.cur = self.db.cursor()
+
+        self.cur.execute(''' SELECT catagory_name FROM catagory ''')
+        data = self.cur.fetchall()
+        for catagory in data:
+            self.comboBox_5.addItem(catagory[0])
+            self.comboBox_8.addItem(catagory[0])
+
+    def Show_Author_ComboBox(self):
+        self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
+        self.cur = self.db.cursor()
+
+        self.cur.execute(''' SELECT author_name FROM authors ''')
+        data = self.cur.fetchall()
+        for catagory in data:
+            self.comboBox_6.addItem(catagory[0])
+            self.comboBox_3.addItem(catagory[0])
+
+    def Show_Publisher_ComboBox(self):
+        self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
+        self.cur = self.db.cursor()
+
+        self.cur.execute(''' SELECT publisher_name FROM publisher ''')
+        data = self.cur.fetchall()
+        for catagory in data:
+            self.comboBox_4.addItem(catagory[0])
+            self.comboBox_7.addItem(catagory[0])
 
 
 def main():
