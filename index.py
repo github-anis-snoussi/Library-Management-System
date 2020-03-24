@@ -43,6 +43,8 @@ class MainApp(QMainWindow , ui):
         self.pushButton_15.clicked.connect(self.Add_Author)
         self.pushButton_16.clicked.connect(self.Add_Publisher)
 
+        self.pushButton_9.clicked.connect(self.Search_Books)
+
     def Show_Themes(self):
         self.groupBox_3.show()
 
@@ -93,7 +95,21 @@ class MainApp(QMainWindow , ui):
         book_catagory = self.comboBox_5.setCurrentIndex(0)
 
     def Search_Books(self):
-        pass
+        self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
+        self.cur = self.db.cursor()
+        book_title = self.lineEdit_8.text()
+
+        sql = ''' SELECT * FROM book WHERE book_name = %s '''
+        self.cur.execute(sql , [(book_title)])
+        data = self.cur.fetchone()
+        self.lineEdit_6.setText(data[1])
+        self.textEdit.setPlainText(data[2])
+        self.lineEdit_5.setText(data[3])
+        self.comboBox_8.setCurrentIndex(data[4])
+        self.comboBox_6.setCurrentIndex(data[5])
+        self.comboBox_7.setCurrentIndex(data[6])
+        self.lineEdit_7.setText(str(data[7]))
+
 
     def Edit_Books(self):
         pass
