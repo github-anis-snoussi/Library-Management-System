@@ -343,16 +343,6 @@
          </rect>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="plainTextEdit">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>140</y>
-          <width>411</width>
-          <height>171</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QComboBox" name="comboBox_3">
         <property name="geometry">
          <rect>
@@ -484,6 +474,16 @@
          <string>Book Price</string>
         </property>
        </widget>
+       <widget class="QTextEdit" name="textEdit_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>140</y>
+          <width>411</width>
+          <height>171</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_6">
        <attribute name="title">
@@ -610,16 +610,6 @@
          <string>Save</string>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="plainTextEdit_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>140</y>
-          <width>411</width>
-          <height>171</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QComboBox" name="comboBox_7">
         <property name="geometry">
          <rect>
@@ -654,7 +644,7 @@
         <property name="geometry">
          <rect>
           <x>290</x>
-          <y>10</y>
+          <y>20</y>
           <width>131</width>
           <height>31</height>
          </rect>
@@ -667,7 +657,7 @@
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>10</y>
+          <y>20</y>
           <width>201</width>
           <height>31</height>
          </rect>
@@ -677,7 +667,7 @@
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>20</y>
+          <y>30</y>
           <width>81</width>
           <height>21</height>
          </rect>
@@ -697,6 +687,16 @@
         </property>
         <property name="text">
          <string>Delete</string>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="textEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>140</y>
+          <width>411</width>
+          <height>171</height>
+         </rect>
         </property>
        </widget>
       </widget>

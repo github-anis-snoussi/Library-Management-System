@@ -74,11 +74,23 @@ class MainApp(QMainWindow , ui):
 
         book_title = self.lineEdit_3.text()
         book_code = self.lineEdit_2.text()
-        book_author = self.comboBox_3.CurrentText()
-        book_publisher = self.comboBox_4.CurrentText()
-        book_catagory = self.comboBox_5.CurrentText()
         book_price = self.lineEdit_4.text()
-        book_description = self.plainTextEdit.text()
+        book_author = self.comboBox_3.currentIndex()
+        book_publisher = self.comboBox_4.currentIndex()
+        book_catagory = self.comboBox_5.currentIndex()
+        book_description = self.textEdit_2.toPlainText()
+
+        self.cur.execute(''' INSERT INTO book(book_name , book_description , book_code , book_catagory , book_author , book_publisher , book_price) VALUES (%s , %s , %s , %s , %s , %s , %s)''',(book_title , book_description , book_code , book_catagory , book_author , book_publisher , book_price))
+        self.db.commit()
+        self.statusBar().showMessage('New Book Added')
+
+        book_title = self.lineEdit_3.setText('')
+        book_code = self.lineEdit_2.setText('')
+        book_price = self.lineEdit_4.setText('')
+        book_description = self.textEdit_2.setPlainText('')
+        book_author = self.comboBox_3.setCurrentIndex(0)
+        book_publisher = self.comboBox_4.setCurrentIndex(0)
+        book_catagory = self.comboBox_5.setCurrentIndex(0)
 
     def Search_Books(self):
         pass
@@ -114,6 +126,7 @@ class MainApp(QMainWindow , ui):
         self.statusBar().showMessage('New Catagory Added')
         self.lineEdit_19.setText('')
         self.Show_Catagory()
+        self.Show_Ctagory_ComboBox()
 
     def Show_Catagory(self):
         self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
@@ -141,6 +154,7 @@ class MainApp(QMainWindow , ui):
         self.statusBar().showMessage('New Author Added')
         self.lineEdit_20.setText('')
         self.Show_Author()
+        self.Show_Author_ComboBox()
 
     def Show_Author(self):
         self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
@@ -168,6 +182,7 @@ class MainApp(QMainWindow , ui):
         self.statusBar().showMessage('New Publisher Added')
         self.lineEdit_21.setText('')
         self.Show_Publisher()
+        self.Show_Publisher_ComboBox()
 
     def Show_Publisher(self):
         self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
@@ -193,6 +208,8 @@ class MainApp(QMainWindow , ui):
 
         self.cur.execute(''' SELECT catagory_name FROM catagory ''')
         data = self.cur.fetchall()
+        self.comboBox_5.clear()
+        self.comboBox_8.clear()
         for catagory in data:
             self.comboBox_5.addItem(catagory[0])
             self.comboBox_8.addItem(catagory[0])
@@ -203,6 +220,8 @@ class MainApp(QMainWindow , ui):
 
         self.cur.execute(''' SELECT author_name FROM authors ''')
         data = self.cur.fetchall()
+        self.comboBox_6.clear()
+        self.comboBox_3.clear()
         for catagory in data:
             self.comboBox_6.addItem(catagory[0])
             self.comboBox_3.addItem(catagory[0])
@@ -213,6 +232,8 @@ class MainApp(QMainWindow , ui):
 
         self.cur.execute(''' SELECT publisher_name FROM publisher ''')
         data = self.cur.fetchall()
+        self.comboBox_4.clear()
+        self.comboBox_7.clear()
         for catagory in data:
             self.comboBox_4.addItem(catagory[0])
             self.comboBox_7.addItem(catagory[0])
