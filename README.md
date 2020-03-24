@@ -25,3 +25,15 @@ users :
     - username
     - password
     - email address
+
+day_to_day :
+    - book
+    - retreive / rent
+    - days
+
+catagory :
+    - name
+author :
+    - name
+publisher :
+    - name
