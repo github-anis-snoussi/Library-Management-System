@@ -139,7 +139,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -829,6 +829,19 @@
         <string>Add User</string>
        </property>
       </widget>
+      <widget class="QLabel" name="label_30">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>230</y>
+         <width>111</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
@@ -836,17 +849,17 @@
         <x>450</x>
         <y>10</y>
         <width>421</width>
-        <height>361</height>
+        <height>141</height>
        </rect>
       </property>
       <property name="title">
-       <string>Edit User Information</string>
+       <string>Login to Edit User</string>
       </property>
       <widget class="QLabel" name="label_20">
        <property name="geometry">
         <rect>
          <x>6</x>
-         <y>40</y>
+         <y>30</y>
          <width>91</width>
          <height>20</height>
         </rect>
@@ -859,7 +872,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>80</y>
+         <y>70</y>
          <width>91</width>
          <height>20</height>
         </rect>
@@ -872,7 +885,7 @@
        <property name="geometry">
         <rect>
          <x>120</x>
-         <y>30</y>
+         <y>20</y>
          <width>271</width>
          <height>31</height>
         </rect>
@@ -882,7 +895,7 @@
        <property name="geometry">
         <rect>
          <x>120</x>
-         <y>70</y>
+         <y>60</y>
          <width>271</width>
          <height>31</height>
         </rect>
@@ -895,7 +908,7 @@
        <property name="geometry">
         <rect>
          <x>290</x>
-         <y>110</y>
+         <y>100</y>
          <width>101</width>
          <height>31</height>
         </rect>
@@ -904,24 +917,40 @@
         <string>Start Editing</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_22">
+     </widget>
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>150</y>
+        <width>421</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Edit Information</string>
+      </property>
+      <widget class="QLineEdit" name="lineEdit_18">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>280</y>
-         <width>91</width>
-         <height>20</height>
+         <x>120</x>
+         <y>100</y>
+         <width>271</width>
+         <height>31</height>
         </rect>
        </property>
-       <property name="text">
-        <string>Confirm Password</string>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
        </property>
       </widget>
       <widget class="QLabel" name="label_23">
        <property name="geometry">
         <rect>
          <x>6</x>
-         <y>160</y>
+         <y>30</y>
          <width>91</width>
          <height>20</height>
         </rect>
@@ -934,7 +963,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>200</y>
+         <y>70</y>
          <width>91</width>
          <height>20</height>
         </rect>
@@ -943,21 +972,11 @@
         <string>Email</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_15">
-       <property name="geometry">
-        <rect>
-         <x>120</x>
-         <y>150</y>
-         <width>271</width>
-         <height>31</height>
-        </rect>
-       </property>
-      </widget>
       <widget class="QLineEdit" name="lineEdit_16">
        <property name="geometry">
         <rect>
          <x>120</x>
-         <y>270</y>
+         <y>140</y>
          <width>271</width>
          <height>31</height>
         </rect>
@@ -966,11 +985,34 @@
         <enum>QLineEdit::Password</enum>
        </property>
       </widget>
+      <widget class="QLineEdit" name="lineEdit_15">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>20</y>
+         <width>271</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_13">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>180</y>
+         <width>101</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Start Editing</string>
+       </property>
+      </widget>
       <widget class="QLabel" name="label_25">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>240</y>
+         <y>110</y>
          <width>91</width>
          <height>20</height>
         </rect>
@@ -979,40 +1021,27 @@
         <string>Password</string>
        </property>
       </widget>
+      <widget class="QLabel" name="label_22">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>150</y>
+         <width>91</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Confirm Password</string>
+       </property>
+      </widget>
       <widget class="QLineEdit" name="lineEdit_17">
        <property name="geometry">
         <rect>
          <x>120</x>
-         <y>190</y>
+         <y>60</y>
          <width>271</width>
          <height>31</height>
         </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_18">
-       <property name="geometry">
-        <rect>
-         <x>120</x>
-         <y>230</y>
-         <width>271</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="echoMode">
-        <enum>QLineEdit::Password</enum>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_13">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>310</y>
-         <width>101</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Start Editing</string>
        </property>
       </widget>
      </widget>

@@ -46,6 +46,9 @@ class MainApp(QMainWindow , ui):
         self.pushButton_15.clicked.connect(self.Add_Author)
         self.pushButton_16.clicked.connect(self.Add_Publisher)
 
+        self.pushButton_11.clicked.connect(self.Add_New_User)
+        self.pushButton_12.clicked.connect(self.Login)
+        self.pushButton_13.clicked.connect(self.Edit_User)
 
 
     def Show_Themes(self):
@@ -149,13 +152,56 @@ class MainApp(QMainWindow , ui):
     #################### Users ######################
 
     def Add_New_User(self):
-        pass
+        self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
+        self.cur = self.db.cursor()
+
+        username = self.lineEdit_9.text()
+        email = self.lineEdit_10.text()
+        password = self.lineEdit_11.text()
+        confirm_password = self.lineEdit_12.text()
+
+        if password == confirm_password :
+            self.cur.execute(''' INSERT INTO users(user_name , user_email , user_password) VALUES (%s , %s , %s) ''',(username , email , password))
+            self.db.commit()
+            self.statusBar().showMessage("New User Added")
+        else : 
+            self.label_30.setText("passwords don't match")
 
     def Login(self):
-        pass
+        self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
+        self.cur = self.db.cursor()
+
+        username = self.lineEdit_13.text()
+        password = self.lineEdit_14.text()
+
+        sql = ''' SELECT * FROM users '''
+        self.cur.execute(sql)
+        data = self.cur.fetchall()
+        for row in data : 
+            if username == row[1] and password == row[3] :
+                self.statusBar().showMessage("You can start editing...")
+                self.groupBox_4.setEnabled(True)
+                self.lineEdit_15.setText(row[1])
+                self.lineEdit_17.setText(row[2])
+
+
+
 
     def Edit_User(self):
-        pass
+        old_username = self.lineEdit_13.text()
+        username = self.lineEdit_15.text()
+        email = self.lineEdit_17.text()
+        password = self.lineEdit_18.text()
+        confirm_password = self.lineEdit_16.text()
+
+        if password == confirm_password :
+            self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
+            self.cur = self.db.cursor()
+            self.cur.execute(''' UPDATE users SET user_name = %s , user_email = %s , user_password = %s WHERE user_name = %s ''' , (username , email , password , old_username))
+            self.db.commit()
+            self.statusBar().showMessage("User Updated.")
+        else :
+            self.statusBar().showMessage("Passwords don't match")
 
     #################################################
     #################### Settings ###################
