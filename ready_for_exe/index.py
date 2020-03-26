@@ -6,14 +6,16 @@ import sys
 import datetime
 import MySQLdb
 from xlrd import *
-from xlsxwriter import *    
+from xlsxwriter import *
+from library import Ui_MainWindow
+from login import Ui_Form
 
 
 ui,_ = loadUiType('library.ui')
 login,_ = loadUiType('login.ui')
 
 
-class Login(QWidget , login):
+class Login(QWidget , Ui_Form):
     def __init__(self):
         QWidget.__init__(self)
         self.setupUi(self)
@@ -44,7 +46,7 @@ class Login(QWidget , login):
 
 
 
-class MainApp(QMainWindow , ui):
+class MainApp(QMainWindow , Ui_MainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
