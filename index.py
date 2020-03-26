@@ -3,6 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
 import sys
+import datetime
 import MySQLdb
 
 
@@ -14,15 +15,20 @@ class MainApp(QMainWindow , ui):
         self.setupUi(self)
         self.Handle_UI_Changes()
         self.Handle_Buttons()
+        self.Dark_Theme()
+
         self.Show_Catagory()
         self.Show_Publisher()
         self.Show_Author()
         self.tableWidget_4.horizontalHeader().setStretchLastSection(True)
         self.tableWidget_3.horizontalHeader().setStretchLastSection(True)
         self.tableWidget_2.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget.horizontalHeader().setStretchLastSection(True)
+
         self.Show_Ctagory_ComboBox()
         self.Show_Author_ComboBox()
         self.Show_Publisher_ComboBox()
+        self.Show_Operations()
 
     def Handle_UI_Changes(self):
         self.Hide_Themes()
@@ -30,7 +36,7 @@ class MainApp(QMainWindow , ui):
 
     def Handle_Buttons(self):
         self.pushButton_5.clicked.connect(self.Show_Themes)
-        self.pushButton_21.clicked.connect(self.Hide_Themes)
+        self.pushButton_36.clicked.connect(self.Hide_Themes)
 
         self.pushButton.clicked.connect(self.Open_Day_To_Day_Tab)
         self.pushButton_2.clicked.connect(self.Open_Books_Tab)
@@ -50,6 +56,11 @@ class MainApp(QMainWindow , ui):
         self.pushButton_12.clicked.connect(self.Login)
         self.pushButton_13.clicked.connect(self.Edit_User)
 
+        self.pushButton_32.clicked.connect(self.Dark_Blue_Theme)
+        self.pushButton_33.clicked.connect(self.Dark_Orange_Theme)
+        self.pushButton_35.clicked.connect(self.Dark_Gray_Theme)
+        self.pushButton_34.clicked.connect(self.Dark_Theme)
+        self.pushButton_6.clicked.connect(self.Handle_Day_Operations)
 
     def Show_Themes(self):
         self.groupBox_3.show()
@@ -327,6 +338,60 @@ class MainApp(QMainWindow , ui):
         for catagory in data:
             self.comboBox_4.addItem(catagory[0])
             self.comboBox_7.addItem(catagory[0])
+
+    #################################################
+    ################### UI Themes ###################
+
+    def Dark_Blue_Theme(self):
+        style = open('themes/darkblue.css' , 'r')
+        style = style.read()
+        self.setStyleSheet(style)
+
+    def Dark_Orange_Theme(self):
+        style = open('themes/darkorange.css' , 'r')
+        style = style.read()
+        self.setStyleSheet(style)
+
+    def Dark_Gray_Theme(self):
+        style = open('themes/darkgray.css' , 'r')
+        style = style.read()
+        self.setStyleSheet(style)
+
+    def Dark_Theme(self):
+        style = open('themes/dark.css' , 'r')
+        style = style.read()
+        self.setStyleSheet(style)
+
+    #################################################
+    ################ Day Operations #################
+
+    def Handle_Day_Operations(self):
+        book_title = self.lineEdit.text()
+        op_type = self.comboBox.currentText()
+        op_days = self.comboBox_2.currentIndex() +1
+        date = str(datetime.date.today())
+        self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
+        self.cur = self.db.cursor()
+        self.cur.execute(''' INSERT INTO dayoperations(book_name , type , days ,date) VALUES (%s , %s , %s , %s) ''' ,(book_title , op_type, op_days , date) )
+        self.db.commit()
+        self.statusBar().showMessage("Operation Added")
+        self.Show_Operations()
+
+    def Show_Operations(self):
+        self.db = MySQLdb.connect( host = 'localhost', user = 'root', password = '', db = 'library')
+        self.cur = self.db.cursor()
+        self.cur.execute(''' SELECT book_name , type , days , date FROM dayoperations ''')
+        data = self.cur.fetchall()
+
+        if data :
+            self.tableWidget.setRowCount(0)
+            rows = 0
+            for row , form in enumerate(data):
+                self.tableWidget.insertRow(rows)
+                for column , item in enumerate(form):
+                    self.tableWidget.setItem(row , column , QTableWidgetItem(str(item)))
+                    column += 1
+                rows = self.tableWidget.rowCount()
 
 
 def main():
