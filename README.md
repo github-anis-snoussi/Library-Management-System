@@ -7,7 +7,7 @@ A Library Management System made with Python & PyQt5
 with no controls over input, extremely stupid database management and very very VERY serious security vulnerabilities => all of that
 and many more makes this app not even remotely close to be called usable !!!!!!
 
-## Why the F*** did I make it then
+## Why  did I make it then
 Good question ! very good question indeed ! <br /> 
 this app was made during the quarantine caused by the COVID-19 outbreak ! <br /> 
 it was a way for me to learn new stuff (obviously I'm not talking about good coding practices xD), I'm talking about GUIs in python, and how to make it into an exe and install it on a client machine. (it can also export data to exel file..... just saying.....) <br /> 
