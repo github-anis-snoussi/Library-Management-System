@@ -4,8 +4,11 @@ A Library Management System made with Python & PyQt5
 ![](demo.gif)
 
 ## Is this app good to use ?
-with no controls over input, extremely stupid database management and very very VERY serious security vulnerabilities => all of that
-and many more makes this app not even remotely close to be called usable !!!!!!
+this app has 
+ - no controls over input
+ - poor database management 
+ - some serious security vulnerabilities
+so NO, this app is not good to use, but only to be taken as an example.
 
 ## Why  did I make it then
 Good question ! very good question indeed ! <br /> 
